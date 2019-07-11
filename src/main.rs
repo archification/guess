@@ -1,11 +1,16 @@
 extern crate rand;
+extern crate crossterm;
 
 use std::io;
 use std::cmp::Ordering;
 use rand::Rng;
+use self::crossterm::{
+    ClearType, Crossterm
+};
 
 fn main() {
-    print!("{}[2J", 27 as char);
+    let crossterm = Crossterm::new();
+    crossterm.terminal().clear(ClearType::All);
     println!("Enter your name: ");
     let mut name = String::new();
     io::stdin().read_line(&mut name)
