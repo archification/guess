@@ -5,6 +5,7 @@ use std::cmp::Ordering;
 use rand::Rng;
 
 fn main() {
+    print!("{}[2J", 27 as char);
     println!("Enter your name: ");
     let mut name = String::new();
     io::stdin().read_line(&mut name)
