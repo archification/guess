@@ -1,11 +1,13 @@
 extern crate rand;
+extern crate cli;
 
 use std::io;
 use std::cmp::Ordering;
 use rand::Rng;
+use cli::clear;
 
 fn main() {
-    print!("{}[2J", 27 as char);
+    clear()
     println!("Enter your name: ");
     let mut name = String::new();
     io::stdin().read_line(&mut name)
