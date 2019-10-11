@@ -11,7 +11,8 @@ use self::crossterm::{
 fn main() {
     let crossterm = Crossterm::new();
     crossterm.terminal().clear(ClearType::All)
-        .expect("Guacamole can't be cleared.");
+        .unwrap_or_else(|err| eprintln!("{}", err));
+//        .expect("Guacamole can't be cleared.");
     println!("Enter your name: ");
     let mut name = String::new();
     io::stdin().read_line(&mut name)
