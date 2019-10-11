@@ -10,13 +10,14 @@ use self::crossterm::{
 
 fn main() {
     let crossterm = Crossterm::new();
-    crossterm.terminal().clear(ClearType::All);
+    crossterm.terminal().clear(ClearType::All)
+        .expect("Guacamole can't be cleared.");
     println!("Enter your name: ");
     let mut name = String::new();
     io::stdin().read_line(&mut name)
-        .expect("Failed to read line");
+        .expect("Failed to read line.");
 
-    println!("Guess a five digit number");
+    println!("Guess a five digit number.");
 
     let secret_number = rand::thread_rng().gen_range(10000, 99999);
     let mut tries = 0;
