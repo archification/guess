@@ -5,4 +5,4 @@ authors = ["archification"]
 
 [dependencies]
 rand = "0.6.5"
-crossterm = "0.11.0"
+termion = "1.5.3"

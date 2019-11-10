@@ -1,18 +1,13 @@
 extern crate rand;
-extern crate crossterm;
+extern crate termion;
 
 use std::io;
 use std::cmp::Ordering;
 use rand::Rng;
-use self::crossterm::{
-    ClearType, Crossterm
-};
+use termion::clear;
 
 fn main() {
-    let crossterm = Crossterm::new();
-    crossterm.terminal().clear(ClearType::All)
-        .unwrap_or_else(|err| eprintln!("{}", err));
-//        .expect("Guacamole can't be cleared.");
+    println!("{}", clear::All);
     println!("Enter your name: ");
     let mut name = String::new();
     io::stdin().read_line(&mut name)
