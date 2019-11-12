@@ -25,15 +25,13 @@ fn main() {
             Ok(num) => num,
             Err(_) => continue,
         };
-        //tries = tries + 1;
         tries += 1;
 
         match guess.cmp(&secret_number) {
             Ordering::Less => println!("higher"),
             Ordering::Greater => println!("lower"),
             Ordering::Equal => {
-                println!("Well done {}, you guessed my number from {} tries!", name.trim(), tries);
-
+                println!("Well done {}, you guessed my number in {} tries!", name.trim(), tries);
                 break;
             }
         }
