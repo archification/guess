@@ -2,7 +2,7 @@ extern crate rand;
 extern crate termion;
 
 use std::io::{stdin, stdout, Write};
-use std::cmp::Ordering;
+use std::cmp::Ordering::{Less, Greater, Equal};
 use rand::Rng;
 use termion::{clear};
 
@@ -28,9 +28,9 @@ fn main() {
         tries += 1;
 
         match guess.cmp(&secret_number) {
-            Ordering::Less => println!("higher"),
-            Ordering::Greater => println!("lower"),
-            Ordering::Equal => {
+            Less => println!("higher"),
+            Greater => println!("lower"),
+            Equal => {
                 println!("Well done {}, you guessed my number in {} tries!", name.trim(), tries);
                 break;
             }
