@@ -2,12 +2,21 @@ extern crate rand;
 extern crate termion;
 
 use std::io::{stdin, stdout, Write};
-use std::cmp::Ordering::{Less, Greater, Equal};
+use std::cmp::Ordering::{
+    Less,
+    Greater,
+    Equal
+};
 use rand::Rng;
-use termion::{clear};
+use termion::{
+    clear,
+    cursor::Goto
+};
 
 fn main() {
-    println!("{}", clear::All);
+    println!("{clear}{goto}",
+             clear = clear::All,
+             goto = Goto(1, 0));
     let _ = stdout().flush();
     println!("Enter your name: ");
     let mut name = String::new();
