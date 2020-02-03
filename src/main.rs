@@ -11,14 +11,21 @@ use rand::Rng;
 use termion::{
     clear,
     color,
+    style,
     cursor::Goto
 };
 
-fn main() {
-    println!("{clear}{goto}",
-            clear = clear::All,
-            goto = Goto(1, 0));
+fn clear() {
+    println!(
+        "{clear}{goto}",
+        clear = clear::All,
+        goto = Goto(1, 0)
+        );
     let _ = stdout().flush();
+}
+
+fn main() {
+    clear();
     println!("Enter your name: ");
     let mut name = String::new();
     stdin().read_line(&mut name)
@@ -38,14 +45,19 @@ fn main() {
         tries += 1;
 
         match guess.cmp(&secret_number) {
-            Less => println!("{blue}higher{reset}",
-                blue = color::Fg(color::Blue),
-                reset = color::Fg(color::Reset)),
-            Greater => println!("{green}lower{reset}",
+            Less => println!("{green}higher{reset}",
                 green = color::Fg(color::Green),
                 reset = color::Fg(color::Reset)),
+            Greater => println!("{blue}lower{reset}",
+                blue = color::Fg(color::Blue),
+                reset = color::Fg(color::Reset)),
             Equal => {
-                println!("Well done {}, you guessed my number in {} tries!", name.trim(), tries);
+                println!("{}Well done {}, you guessed my number in {} tries!{}",
+                    style::Bold,
+                    name.trim(),
+                    tries,
+                    style::Reset
+                    );
                 break;
             }
         }
