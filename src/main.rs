@@ -30,6 +30,7 @@ fn main() {
     let mut name = String::new();
     stdin().read_line(&mut name)
         .expect("Failed to read line.");
+    clear();
     println!("Guess a five digit number.");
     let secret_number = rand::thread_rng().gen_range(10000, 99999);
     let mut tries = 0;
@@ -45,12 +46,12 @@ fn main() {
         tries += 1;
 
         match guess.cmp(&secret_number) {
-            Less => println!("{green}higher{reset}",
-                green = color::Fg(color::Green),
-                reset = color::Fg(color::Reset)),
-            Greater => println!("{blue}lower{reset}",
-                blue = color::Fg(color::Blue),
-                reset = color::Fg(color::Reset)),
+            Less => println!("{}higher{}",
+                color::Fg(color::Green),
+                color::Fg(color::Reset)),
+            Greater => println!("{}lower{}",
+                color::Fg(color::Blue),
+                color::Fg(color::Reset)),
             Equal => {
                 println!("{}Well done {}, you guessed my number in {} tries!{}",
                     style::Bold,
