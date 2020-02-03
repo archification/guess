@@ -25,6 +25,7 @@ fn clear() {
 }
 
 fn main() {
+    println!("this is a test");
     clear();
     println!("Enter your name: ");
     let mut name = String::new();
