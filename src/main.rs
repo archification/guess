@@ -10,13 +10,14 @@ use std::cmp::Ordering::{
 use rand::Rng;
 use termion::{
     clear,
+    color,
     cursor::Goto
 };
 
 fn main() {
     println!("{clear}{goto}",
-             clear = clear::All,
-             goto = Goto(1, 0));
+            clear = clear::All,
+            goto = Goto(1, 0));
     let _ = stdout().flush();
     println!("Enter your name: ");
     let mut name = String::new();
@@ -37,8 +38,12 @@ fn main() {
         tries += 1;
 
         match guess.cmp(&secret_number) {
-            Less => println!("higher"),
-            Greater => println!("lower"),
+            Less => println!("{blue}higher{reset}",
+                blue = color::Fg(color::Blue),
+                reset = color::Fg(color::Reset)),
+            Greater => println!("{green}lower{reset}",
+                green = color::Fg(color::Green),
+                reset = color::Fg(color::Reset)),
             Equal => {
                 println!("Well done {}, you guessed my number in {} tries!", name.trim(), tries);
                 break;
