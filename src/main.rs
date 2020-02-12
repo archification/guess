@@ -2,6 +2,7 @@ extern crate rand;
 extern crate crossterm;
 
 mod solarized;
+mod common;
 
 use std::io::stdin;
 use std::cmp::Ordering::{
@@ -17,7 +18,6 @@ use crossterm::style::{
     SetForegroundColor
 };
 use solarized::{
-    clear,
     BACK,
     YELLOW,
     ORANGE,
@@ -28,6 +28,7 @@ use solarized::{
     CYAN,
     GREEN
 };
+use common::clear;
 
 fn main() {
     clear().unwrap();
