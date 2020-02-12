@@ -25,6 +25,17 @@ use crossterm::{
         SetForegroundColor
     },
 };
+use solarized::{
+    BACK,
+    YELLOW,
+    ORANGE,
+    RED,
+    MAGENTA,
+    VIOLET,
+    BLUE,
+    CYAN,
+    GREEN
+};
 
 fn clear() -> Result<()> {
     stdout()
@@ -35,7 +46,18 @@ fn clear() -> Result<()> {
 
 fn main() {
     clear().unwrap();
-    println!("Enter your name: ");
+    println!(
+        "{}{}Please {}enter {}your {}name {}to {}save {}your {}win: ",
+        SetBackgroundColor(BACK),
+        SetForegroundColor(YELLOW),
+        SetForegroundColor(ORANGE),
+        SetForegroundColor(RED),
+        SetForegroundColor(MAGENTA),
+        SetForegroundColor(VIOLET),
+        SetForegroundColor(BLUE),
+        SetForegroundColor(CYAN),
+        SetForegroundColor(GREEN),
+    );
     let mut name = String::new();
     stdin().read_line(&mut name)
         .expect("Failed to read line.");
@@ -55,28 +77,31 @@ fn main() {
         tries += 1;
 
         match guess.cmp(&secret_number) {
-            Less => println!("{}{}higher{}",
-                SetBackgroundColor(solarized::BACK),
-                SetForegroundColor(solarized::GREEN),
+            Less => println!(
+                "{}{}higher{}",
+                SetBackgroundColor(BACK),
+                SetForegroundColor(GREEN),
                 ResetColor
                 ),
-            Greater => println!("{}{}lower{}",
-                SetBackgroundColor(solarized::BACK),
-                SetForegroundColor(solarized::BLUE),
+            Greater => println!(
+                "{}{}lower{}",
+                SetBackgroundColor(BACK),
+                SetForegroundColor(BLUE),
                 ResetColor
                 ),
             Equal => {
-                println!("{}{}{}{}Well done {}{}{}, you matched in {}{}{} tries!{}",
-                    SetBackgroundColor(solarized::BACK),
-                    SetForegroundColor(solarized::CYAN),
+                println!(
+                    "{}{}{}{}Well done {}{}{}, you matched in {}{}{} tries!{}",
+                    SetBackgroundColor(BACK),
+                    SetForegroundColor(CYAN),
                     Attribute::Bold,
                     Attribute::SlowBlink,
-                    SetForegroundColor(solarized::VIOLET),
+                    SetForegroundColor(VIOLET),
                     name.trim(),
-                    SetForegroundColor(solarized::CYAN),
-                    SetForegroundColor(solarized::VIOLET),
+                    SetForegroundColor(CYAN),
+                    SetForegroundColor(VIOLET),
                     tries,
-                    SetForegroundColor(solarized::CYAN),
+                    SetForegroundColor(CYAN),
                     ResetColor
                     );
                 break;
