@@ -1,7 +1,17 @@
 extern crate crossterm;
 
-use crossterm::style::{
-    Color
+use std::io::stdout;
+use crossterm::{
+    ExecutableCommand,
+    cursor,
+    Result,
+    terminal::{
+        Clear,
+        ClearType
+    },
+    style::{
+        Color
+    },
 };
 
 pub const BACK: Color = Color::Rgb { r:7, g:54, b:66 };
@@ -13,3 +23,10 @@ pub const VIOLET: Color = Color::Rgb { r:108, g:113, b:196 };
 pub const BLUE: Color = Color::Rgb { r:38, g:139, b:210 };
 pub const CYAN: Color = Color::Rgb { r:42, g:161, b:152 };
 pub const GREEN: Color = Color::Rgb { r:133, g:153, b:0 };
+
+pub fn clear() -> Result<()> {
+    stdout()
+        .execute(Clear(ClearType::All))?
+        .execute(cursor::MoveTo(0, 0))?;
+    Ok(())
+}

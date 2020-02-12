@@ -3,29 +3,21 @@ extern crate crossterm;
 
 mod solarized;
 
-use std::io::{stdin, stdout};
+use std::io::stdin;
 use std::cmp::Ordering::{
     Less,
     Greater,
     Equal
 };
 use rand::Rng;
-use crossterm::{
-    ExecutableCommand,
-    cursor,
-    Result,
-    terminal::{
-        Clear,
-        ClearType
-    },
-    style::{
-        Attribute,
-        ResetColor,
-        SetBackgroundColor,
-        SetForegroundColor
-    },
+use crossterm::style::{
+    Attribute,
+    ResetColor,
+    SetBackgroundColor,
+    SetForegroundColor
 };
 use solarized::{
+    clear,
     BACK,
     YELLOW,
     ORANGE,
@@ -36,13 +28,6 @@ use solarized::{
     CYAN,
     GREEN
 };
-
-fn clear() -> Result<()> {
-    stdout()
-        .execute(Clear(ClearType::All))?
-        .execute(cursor::MoveTo(0, 0))?;
-    Ok(())
-}
 
 fn main() {
     clear().unwrap();
