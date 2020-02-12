@@ -47,7 +47,7 @@ fn clear() -> Result<()> {
 fn main() {
     clear().unwrap();
     println!(
-        "{}{}Please {}enter {}your {}name {}to {}save {}your {}win: ",
+        "{}{}Please {}enter {}your {}name {}to {}save {}your {}win: {}",
         SetBackgroundColor(BACK),
         SetForegroundColor(YELLOW),
         SetForegroundColor(ORANGE),
@@ -57,12 +57,25 @@ fn main() {
         SetForegroundColor(BLUE),
         SetForegroundColor(CYAN),
         SetForegroundColor(GREEN),
+        ResetColor
     );
     let mut name = String::new();
     stdin().read_line(&mut name)
         .expect("Failed to read line.");
     clear().unwrap();
-    println!("Guess a five digit number.");
+    println!(
+        "{}{}Guess {}a {}five {}digit {}number {}now {}or {}else: {}",
+        SetBackgroundColor(BACK),
+        SetForegroundColor(YELLOW),
+        SetForegroundColor(ORANGE),
+        SetForegroundColor(RED),
+        SetForegroundColor(MAGENTA),
+        SetForegroundColor(VIOLET),
+        SetForegroundColor(BLUE),
+        SetForegroundColor(CYAN),
+        SetForegroundColor(GREEN),
+        ResetColor
+    );
     let secret_number = rand::thread_rng().gen_range(10000, 99999);
     let mut tries = 0;
 
