@@ -3,7 +3,7 @@ extern crate crossterm;
 
 mod solarized;
 
-use std::io::{stdin, stdout, Write};
+use std::io::{stdin, stdout};
 use std::cmp::Ordering::{
     Less,
     Greater,
@@ -11,6 +11,9 @@ use std::cmp::Ordering::{
 };
 use rand::Rng;
 use crossterm::{
+    ExecutableCommand,
+    cursor,
+    Result,
     terminal::{
         Clear,
         ClearType
@@ -23,18 +26,20 @@ use crossterm::{
     },
 };
 
-fn clear() {
-    Clear(ClearType::All);
-    let _ = stdout().flush();
+fn clear() -> Result<()> {
+    stdout()
+        .execute(Clear(ClearType::All))?
+        .execute(cursor::MoveTo(0, 0))?;
+    Ok(())
 }
 
 fn main() {
-    clear();
+    clear().unwrap();
     println!("Enter your name: ");
     let mut name = String::new();
     stdin().read_line(&mut name)
         .expect("Failed to read line.");
-    clear();
+    clear().unwrap();
     println!("Guess a five digit number.");
     let secret_number = rand::thread_rng().gen_range(10000, 99999);
     let mut tries = 0;
