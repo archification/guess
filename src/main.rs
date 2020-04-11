@@ -33,7 +33,7 @@ use common::clear;
 fn main() {
     clear().unwrap();
     println!(
-        "{}{}Please {}enter {}your {}name {}to {}save {}your {}win: {}",
+        "{}{}Please {}enter {}your {}name {}to {}save {}your {}score: {}",
         SetBackgroundColor(BACK),
         SetForegroundColor(YELLOW),
         SetForegroundColor(ORANGE),
