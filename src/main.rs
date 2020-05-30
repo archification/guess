@@ -76,21 +76,18 @@ fn main() {
         tries += 1;
 
         match guess.cmp(&secret_number) {
-            Less => println!(
-                "{}{}higher{}",
+            Less => println!("{}{}higher{}",
                 SetBackgroundColor(BACK),
                 SetForegroundColor(GREEN),
                 ResetColor
                 ),
-            Greater => println!(
-                "{}{}lower{}",
+            Greater => println!("{}{}lower{}",
                 SetBackgroundColor(BACK),
                 SetForegroundColor(BLUE),
                 ResetColor
                 ),
             Equal => {
-                println!(
-                    "{}{}{}{}Well done {}{}{}, you matched in {}{}{} tries!{}",
+                println!("{}{}{}{}Well done {}{}{}, you matched in {}{}{} tries!{}",
                     SetBackgroundColor(BACK),
                     SetForegroundColor(CYAN),
                     Attribute::Bold,
