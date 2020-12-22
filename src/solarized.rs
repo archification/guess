@@ -1,5 +1,3 @@
-extern crate crossterm;
-
 use crossterm::style::Color;
 
 pub const BACK: Color = Color::Rgb { r:7, g:54, b:66 };
