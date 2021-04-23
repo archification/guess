@@ -62,7 +62,7 @@ fn main() {
         SetForegroundColor(GREEN),
         ResetColor
     );
-    let secret_number = rand::thread_rng().gen_range(10000, 99999);
+    let secret_number = rand::thread_rng().gen_range(10000..99999);
     let mut tries = 0;
 
     loop {
