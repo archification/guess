@@ -4,16 +4,14 @@ use std::io::stdout;
 use crossterm::{
     ExecutableCommand,
     cursor,
-    Result,
     terminal::{
         Clear,
         ClearType
     }
 };
 
-pub fn clear() -> Result<()> {
+pub fn clear() {
     stdout()
-        .execute(Clear(ClearType::All))?
-        .execute(cursor::MoveTo(0, 0))?;
-    Ok(())
+        .execute(Clear(ClearType::All)).unwrap()
+        .execute(cursor::MoveTo(0, 0)).unwrap();
 }
